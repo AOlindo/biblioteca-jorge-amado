@@ -16,5 +16,10 @@ public class ResourceExceptionHandlerr {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
 
 	}
+	@ExceptionHandler(FileException.class)
+	public ResponseEntity<Error> file(FileException e, HttpServletRequest request) {
+		Error erro = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Erro de arquivo", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 
+	}
 }
