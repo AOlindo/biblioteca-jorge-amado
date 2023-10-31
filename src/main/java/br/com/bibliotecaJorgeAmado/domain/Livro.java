@@ -30,7 +30,9 @@ public class Livro implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "editora_id")
-	private Editora Editora;
+	private Editora editora;
+	
+	private String url;
 	
 	public Livro() {
 		
@@ -82,12 +84,21 @@ public class Livro implements Serializable{
 	}
 
 	public Editora getEditora() {
-		return Editora;
+		return editora;
 	}
 
 	public void setEditora(Editora editora) {
-		Editora = editora;
+		this.editora = editora;
 	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	
 	
 
