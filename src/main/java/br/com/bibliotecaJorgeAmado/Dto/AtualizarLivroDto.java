@@ -1,11 +1,11 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-public class AtualizarLivroDto {
+public class AtualizarLivroDTO {
 
 	private String titulo;
 	private String descricao;
 	
-	public AtualizarLivroDto() {
+	public AtualizarLivroDTO() {
 		
 	}
 

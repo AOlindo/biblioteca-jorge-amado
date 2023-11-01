@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.exception.TratamentoException;
@@ -28,7 +28,7 @@ public class AlunoService {
 
 	}
 
-	public Aluno update(AtualizarAlunoDto atualizar, Integer id) {
+	public Aluno update(AtualizarAlunoDTO atualizar, Integer id) {
 		Aluno aluno = findById(id);
 		aluno.atualizaAluno(atualizar);
 		return alunoRepository.save(aluno);

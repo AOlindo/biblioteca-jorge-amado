@@ -2,8 +2,8 @@ package br.com.bibliotecaJorgeAmado.domain;
 
 import java.io.Serializable;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDto;
-import br.com.bibliotecaJorgeAmado.Dto.AlunoDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Aluno implements Serializable {
 
 	}
 
-	public Aluno(AlunoDto cadastroDto) {
+	public Aluno(CadastroAlunoDTO cadastroDto) {
 		super();
 		this.nome = cadastroDto.getNome();
 		this.email = cadastroDto.getEmail();
@@ -42,7 +42,7 @@ public class Aluno implements Serializable {
 		this.endereco = new Endereco(cadastroDto.getEndereco());
 	}
 
-	public void atualizaAluno(@Valid AtualizarAlunoDto atualizaDto) {
+	public void atualizaAluno(@Valid AtualizarAlunoDTO atualizaDto) {
 		if (atualizaDto.getNome() != null) {
 			this.nome = atualizaDto.getNome();
 		}

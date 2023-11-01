@@ -2,7 +2,7 @@ package br.com.bibliotecaJorgeAmado.domain;
 
 import java.io.Serializable;
 
-import br.com.bibliotecaJorgeAmado.Dto.EnderecoDto;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroEnderecoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +26,7 @@ public class Endereco implements Serializable {
 
 	}
 
-	public Endereco(EnderecoDto enderecoDto) {
+	public Endereco(CadastroEnderecoDTO enderecoDto) {
 		this.logradouro = enderecoDto.getLogradouro();
 		this.numero = enderecoDto.getNumero();
 		this.bairro = enderecoDto.getBairro();
@@ -35,7 +35,7 @@ public class Endereco implements Serializable {
 		this.cep = enderecoDto.getCep();
 	}
 
-	public void atualizandoEndereco(EnderecoDto atualiza) {
+	public void atualizandoEndereco(CadastroEnderecoDTO atualiza) {
 		this.logradouro = atualiza.getLogradouro();
 		this.numero = atualiza.getNumero();
 		this.bairro = atualiza.getBairro();

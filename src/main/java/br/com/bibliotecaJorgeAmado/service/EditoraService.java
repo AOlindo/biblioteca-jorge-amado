@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDTO;
 import br.com.bibliotecaJorgeAmado.domain.Editora;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.EditoraRepository;
@@ -25,7 +25,7 @@ public class EditoraService {
 
 	}
 
-	public Editora update(AtualizarEditoraDto editoraDto, Integer id) {
+	public Editora update(AtualizarEditoraDTO editoraDto, Integer id) {
 		Editora editora = findById(id);;
 		editora.atualizaEditora(editoraDto);
 		return editoraRepository.save(editora);

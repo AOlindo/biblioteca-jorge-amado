@@ -1,56 +1,33 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
+import java.io.Serializable;
+
 import br.com.bibliotecaJorgeAmado.domain.Endereco;
-import jakarta.validation.constraints.NotNull;
 
-public class EnderecoDto {
+public class EnderecoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
+	
 	private Integer id;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String logradouro;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String numero;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String bairro;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String cidade;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String uf;
-	@NotNull(message = "Preenchimento obrigatório")
 	private String cep;
 
-	public EnderecoDto() {
+	public EnderecoDTO() {
 
 	}
 
-	public EnderecoDto(Endereco obj) {
-		this.logradouro = obj.getLogradouro();
-		this.numero = obj.getNumero();
-		this.bairro = obj.getBairro();
-		this.cidade = obj.getCidade();
-		this.uf = obj.getUf();
-		this.cep = obj.getCep();
-
-	}
-	public void atualizandoEndereco(Endereco atualiza) {
-		if(atualiza.getLogradouro() != null) {
-			this.logradouro = getLogradouro();
-		}
-		if(atualiza.getNumero() != null){
-			this.numero = getNumero();
-		}
-		if(atualiza.getBairro() != null) {
-			this.bairro = getBairro();
-		}
-		if(atualiza.getCidade() != null) {
-			this.cidade = getCidade();
-		}
-		if(atualiza.getUf() != null) {
-			this.uf = getUf();
-		}
-		if(atualiza.getCep() != null) {
-			this.cep = getCep();
-		}
+	public EnderecoDTO(Endereco endereco) {
+		this.id = endereco.getId();
+		this.logradouro = endereco.getLogradouro();
+		this.numero = endereco.getNumero();
+		this.bairro = endereco.getBairro();
+		this.cidade = endereco.getCidade();
+		this.uf = endereco.getUf();
+		this.cep = endereco.getCep();
 	}
 
 	public Integer getId() {

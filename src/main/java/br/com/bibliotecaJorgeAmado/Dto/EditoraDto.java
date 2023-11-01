@@ -1,17 +1,32 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-import jakarta.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
-public class EditoraDto {
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroEditoraDTO;
+import br.com.bibliotecaJorgeAmado.domain.Editora;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.Valid;
 
+public class EditoraDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
-	@NotEmpty(message = "Preenchimento obrigatório")
 	private String nome;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	private EnderecoDto endereco;
 
-	public EditoraDto() {
-
+	
+	public EditoraDTO() {
+		
+	}
+	public EditoraDTO(Editora editora) {
+		this.id = editora.getId();
+		this.nome = editora.getNome();
 	}
 
 	public Integer getId() {
@@ -30,12 +45,10 @@ public class EditoraDto {
 		this.nome = nome;
 	}
 
-	public EnderecoDto getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(EnderecoDto endereco) {
-		this.endereco = endereco;
-	}
-
+	
+	
+	
+	
+	
+	
 }

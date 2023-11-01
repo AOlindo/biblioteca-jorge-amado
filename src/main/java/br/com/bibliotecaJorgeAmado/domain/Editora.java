@@ -2,8 +2,8 @@ package br.com.bibliotecaJorgeAmado.domain;
 
 import java.io.Serializable;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDto;
-import br.com.bibliotecaJorgeAmado.Dto.EditoraDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroEditoraDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,13 +29,13 @@ public class Editora implements Serializable {
 	public Editora() {
 		
 	}
-	public Editora(EditoraDto cadastroDto) {
+	public Editora(CadastroEditoraDTO cadastroDto) {
 		this.id = cadastroDto.getId();
 		this.nome = cadastroDto.getNome();
 		this.endereco = new Endereco(cadastroDto.getEndereco());
 	}
 	
-	public void atualizaEditora(@Valid AtualizarEditoraDto atualizaDto) {
+	public void atualizaEditora(@Valid AtualizarEditoraDTO atualizaDto) {
 		if (atualizaDto.getNome() != null) {
 			this.nome = atualizaDto.getNome();
 		}

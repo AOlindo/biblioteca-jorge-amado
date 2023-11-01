@@ -1,27 +1,25 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-import br.com.bibliotecaJorgeAmado.domain.Autor;
+import jakarta.validation.constraints.NotEmpty;
 
-public class AutorDTO {
+public class CadastroAutorDTO {
 
 	private Integer id;
+	@NotEmpty(message = "Campo obrigatorio")
 	private String nome;
-	
-	public AutorDTO(Autor autor) {
-		this.nome = autor.getNome();
-		this.id = autor.getId();
+	@NotEmpty(message = "Campo obrigatorio")
+
+	public CadastroAutorDTO() {
+
 	}
-	
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -30,6 +28,6 @@ public class AutorDTO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	
 }

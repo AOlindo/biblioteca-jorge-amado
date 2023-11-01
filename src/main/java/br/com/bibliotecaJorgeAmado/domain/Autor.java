@@ -1,17 +1,14 @@
 package br.com.bibliotecaJorgeAmado.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDto;
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDto;
-import br.com.bibliotecaJorgeAmado.Dto.AutorDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.AutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAutorDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.Valid;
 
 @Entity
@@ -23,16 +20,14 @@ public class Autor implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@OneToMany
-	private List<Livro> livro = new ArrayList<>();
-	
+
 	public Autor() {
 		
 	}
-	public Autor(AutorDto autorDto) {
-		this.nome = autorDto.getNome();
+	public Autor(CadastroAutorDTO autor) {
+		this.nome = autor.getNome();
 	}
-	public void atualizaAutor(@Valid AtualizarAutorDto atualizaDto) {
+	public void atualizaAutor(@Valid AtualizarAutorDTO atualizaDto) {
 		if (atualizaDto.getNome() != null) {
 			this.nome = atualizaDto.getNome();
 		}
@@ -54,15 +49,5 @@ public class Autor implements Serializable{
 		this.nome = nome;
 	}
 
-	public List<Livro> getLivro() {
-		return livro;
-	}
 
-	public void setLivro(List<Livro> livro) {
-		this.livro = livro;
-	}
-	
-	
-	
-	
 }

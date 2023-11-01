@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDto;
-import br.com.bibliotecaJorgeAmado.Dto.EditoraDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarEditoraDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroEditoraDTO;
 import br.com.bibliotecaJorgeAmado.domain.Editora;
 import br.com.bibliotecaJorgeAmado.service.EditoraService;
 import jakarta.validation.Valid;
@@ -28,14 +28,14 @@ public class EditoraController {
 	private EditoraService editoraService;
 
 	@PostMapping
-	public ResponseEntity<Editora> insert(@RequestBody EditoraDto cadastroDto) {
+	public ResponseEntity<Editora> insert(@RequestBody CadastroEditoraDTO cadastroDto) {
 		Editora editora = new Editora(cadastroDto);
 		editoraService.insert(editora);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Editora> update(@RequestBody @Valid AtualizarEditoraDto atualizaEditoraDto, @PathVariable Integer id) {
+	public ResponseEntity<Editora> update(@RequestBody @Valid AtualizarEditoraDTO atualizaEditoraDto, @PathVariable Integer id) {
 		editoraService.update(atualizaEditoraDto, id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

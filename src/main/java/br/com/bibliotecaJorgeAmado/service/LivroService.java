@@ -2,21 +2,24 @@ package br.com.bibliotecaJorgeAmado.service;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarLivroDto;
-import br.com.bibliotecaJorgeAmado.Dto.LivroDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarLivroDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroLivroDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemLivroDTO;
 import br.com.bibliotecaJorgeAmado.domain.Autor;
 import br.com.bibliotecaJorgeAmado.domain.Editora;
 import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.LivroRepository;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.AssertFalse.List;
 
 @Service
 public class LivroService {
@@ -42,7 +45,7 @@ public class LivroService {
 	@Value("${img.profile.size}")
 	private Integer size;
 	
-	public Livro insert(LivroDto livroDto) {
+	public Livro insert(CadastroLivroDTO livroDto) {
 		Editora editora = editoraService.findById(livroDto.getEditoraId());
 		Autor autor = autorService.findById(livroDto.getAutorId());
 		Livro livro = new Livro(livroDto);
@@ -55,7 +58,7 @@ public class LivroService {
 		return livroRepository.save(livro);
 	}
 	
-	public Livro update(@Valid AtualizarLivroDto atualizarDto, Integer id) {
+	public Livro update(@Valid AtualizarLivroDTO atualizarDto, Integer id) {
 		Livro livro = findById(id);
 		livro.atualizarLivro(atualizarDto);
 		return salve(livro);
@@ -80,9 +83,11 @@ public class LivroService {
 		return uri;
 	}
 	
-//	public List<Livro> livros(){
-//		
-//	}
+	public List<ListagemLivroDTO> find() {
+		List<ListagemLivroDTO> livro = livroRepository.findAll().stream().map(l -> new ListagemLivroDTO(l)).collect(Collectors.toList());
+		return livro;
+		
+	}
 
 
 

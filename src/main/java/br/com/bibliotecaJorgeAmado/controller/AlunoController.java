@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDto;
-import br.com.bibliotecaJorgeAmado.Dto.AlunoDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.service.AlunoService;
 import jakarta.validation.Valid;
@@ -28,14 +28,14 @@ public class AlunoController {
 	private AlunoService alunoService;
 
 	@PostMapping
-	public ResponseEntity<Aluno> insert(@RequestBody AlunoDto cadatroDto) {
+	public ResponseEntity<Aluno> insert(@RequestBody CadastroAlunoDTO cadatroDto) {
 		Aluno aluno = new Aluno(cadatroDto);
 		alunoService.insert(aluno);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Aluno> update(@RequestBody @Valid AtualizarAlunoDto atualizaDto, @PathVariable Integer id) {
+	public ResponseEntity<Aluno> update(@RequestBody @Valid AtualizarAlunoDTO atualizaDto, @PathVariable Integer id) {
 		alunoService.update(atualizaDto, id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

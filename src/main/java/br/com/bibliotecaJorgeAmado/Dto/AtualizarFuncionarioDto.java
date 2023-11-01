@@ -1,12 +1,12 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-public class AtualizarFuncionarioDto {
+public class AtualizarFuncionarioDTO {
 
 	private String nome;
 	private String telefone;
-	private EnderecoDto endereco;
+	private CadastroEnderecoDTO endereco;
 
-	public AtualizarFuncionarioDto() {
+	public AtualizarFuncionarioDTO() {
 
 	}
 
@@ -23,11 +23,11 @@ public class AtualizarFuncionarioDto {
 		return telefone;
 	}
 
-	public EnderecoDto getEndereco() {
+	public CadastroEnderecoDTO getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(EnderecoDto endereco) {
+	public void setEndereco(CadastroEnderecoDTO endereco) {
 		this.endereco = endereco;
 	}
 

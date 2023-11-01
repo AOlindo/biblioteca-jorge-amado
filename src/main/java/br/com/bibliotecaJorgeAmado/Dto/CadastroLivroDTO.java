@@ -2,7 +2,7 @@ package br.com.bibliotecaJorgeAmado.Dto;
 
 import jakarta.validation.constraints.NotNull;
 
-public class LivroDto {
+public class CadastroLivroDTO {
 
 	@NotNull(message = "Campo obrigatorio")
 	private Integer editoraId;
@@ -13,7 +13,7 @@ public class LivroDto {
 	@NotNull(message = "Campo obrigatorio")
 	private String descricao;
 	
-	public LivroDto() {
+	public CadastroLivroDTO() {
 		
 	}
 	

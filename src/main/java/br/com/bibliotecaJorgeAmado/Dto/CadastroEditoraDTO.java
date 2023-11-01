@@ -1,12 +1,25 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-public class AtualizarEditoraDTO {
+import jakarta.validation.constraints.NotEmpty;
 
+public class CadastroEditoraDTO {
+
+	private Integer id;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String nome;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private CadastroEnderecoDTO endereco;
 
-	public AtualizarEditoraDTO() {
+	public CadastroEditoraDTO() {
 
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {

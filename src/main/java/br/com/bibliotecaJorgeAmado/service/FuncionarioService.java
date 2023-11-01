@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDto;
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Funcionario;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
@@ -31,7 +31,7 @@ public class FuncionarioService {
 		funcionarioRepository.delete(funcionario);
 	}
 	
-	public Funcionario update(AtualizarFuncionarioDto atualizar, Integer id) {
+	public Funcionario update(AtualizarFuncionarioDTO atualizar, Integer id) {
 		Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Id do funcionário não encontrado"));
 		funcionario.atualizarFuncionario(atualizar);
 		return funcionarioRepository.save(funcionario);

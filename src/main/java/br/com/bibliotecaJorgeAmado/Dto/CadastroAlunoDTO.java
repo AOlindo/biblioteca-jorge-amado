@@ -7,19 +7,22 @@ import br.com.bibliotecaJorgeAmado.domain.Endereco;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
-public class FuncionarioDTO {
+public class CadastroAlunoDTO {
 
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String nome;
+	@Email
 	@NotEmpty(message = "Preenchimento obrigatório")
-	private String telefone;
+	private String email;
 	@CPF
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cpf;
 	@NotEmpty(message = "Preenchimento obrigatório")
+	private String telefone;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private CadastroEnderecoDTO endereco;
 
-	public FuncionarioDTO() {
+	public CadastroAlunoDTO() {
 
 	}
 
@@ -29,6 +32,14 @@ public class FuncionarioDTO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCpf() {

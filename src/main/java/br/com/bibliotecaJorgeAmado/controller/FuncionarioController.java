@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDto;
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDto;
-import br.com.bibliotecaJorgeAmado.Dto.AlunoDto;
-import br.com.bibliotecaJorgeAmado.Dto.FuncionarioDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.FuncionarioDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Funcionario;
 import br.com.bibliotecaJorgeAmado.service.AlunoService;
@@ -32,14 +32,14 @@ public class FuncionarioController {
 	private FuncionarioService funcionarioService;
 
 	@PostMapping
-	public ResponseEntity<Funcionario> insert(@RequestBody FuncionarioDto cadatroDto) {
+	public ResponseEntity<Funcionario> insert(@RequestBody FuncionarioDTO cadatroDto) {
 		Funcionario funcionario = new Funcionario(cadatroDto);
 		funcionarioService.insert(funcionario);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Funcionario> update(@RequestBody @Valid AtualizarFuncionarioDto atualizaDto, @PathVariable Integer id) {
+	public ResponseEntity<Funcionario> update(@RequestBody @Valid AtualizarFuncionarioDTO atualizaDto, @PathVariable Integer id) {
 		funcionarioService.update(atualizaDto, id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

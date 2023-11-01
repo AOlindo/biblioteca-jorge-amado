@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDto;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAutorDTO;
 import br.com.bibliotecaJorgeAmado.domain.Autor;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.AutorRepository;
@@ -20,12 +21,16 @@ public class AutorService {
 		this.autorRepository = autorRepository;
 	}
 
-	public Autor insert(Autor autor) {
-		return autorRepository.save(autor);
+	public Autor insert(CadastroAutorDTO autorDto) {
+		Autor autor = new Autor(autorDto);
+		return salve(autor);
 
 	}
+	public Autor salve(Autor autor) {
+		return autorRepository.save(autor);
+	}
 
-	public Autor update(AtualizarAutorDto autorDto, Integer id) {
+	public Autor update(AtualizarAutorDTO autorDto, Integer id) {
 		Autor autor = findById(id);
 		autor.atualizaAutor(autorDto);
 		return autorRepository.save(autor);

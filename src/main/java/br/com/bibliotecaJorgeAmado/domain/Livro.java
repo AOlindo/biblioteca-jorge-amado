@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.bibliotecaJorgeAmado.Dto.AtualizarLivroDto;
-import br.com.bibliotecaJorgeAmado.Dto.LivroDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarLivroDTO;
+import br.com.bibliotecaJorgeAmado.Dto.AutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroLivroDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemLivroDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +29,8 @@ public class Livro implements Serializable{
 	private String descricao;
 	
 	@ManyToOne
+	@JsonManagedReference
+	
 	@JoinColumn(name = "autor_id")
 	private Autor autor;
 
@@ -38,18 +44,23 @@ public class Livro implements Serializable{
 		
 	}
 	
-	public Livro(LivroDto livroDto) {
+	public Livro(CadastroLivroDTO livroDto) {
 		this.titulo = livroDto.getTitulo();
 		this.descricao = livroDto.getDescricao();
 	}
 	
-	public void atualizarLivro(AtualizarLivroDto atualizarDto) {
+	public void atualizarLivro(AtualizarLivroDTO atualizarDto) {
 		if(atualizarDto.getTitulo() != null) {
 			this.titulo = atualizarDto.getTitulo();
 		}
 		if(atualizarDto.getDescricao() != null) {
 			this.descricao = atualizarDto.getDescricao();
 		}
+	}
+	
+	public void listarLivros(ListagemLivroDTO listagemDto) {
+		this.titulo = listagemDto.getTitulo();
+		this.descricao = listagemDto.getDescricao();
 	}
 
 	public Integer getId() {
