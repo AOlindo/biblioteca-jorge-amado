@@ -9,6 +9,7 @@ import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Funcionario;
+import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.FuncionarioRepository;
 
@@ -41,5 +42,9 @@ public class FuncionarioService {
 		List<Funcionario> funcionario = funcionarioRepository.findAll();
 		return funcionario;
 		
+	}
+	public Funcionario findById(Integer id) {
+		Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Id do funcionario não encontrado"));
+		return funcionario;
 	}
 }

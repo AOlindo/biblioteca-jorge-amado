@@ -30,7 +30,6 @@ public class Livro implements Serializable{
 	
 	@ManyToOne
 	@JsonManagedReference
-	
 	@JoinColumn(name = "autor_id")
 	private Autor autor;
 
