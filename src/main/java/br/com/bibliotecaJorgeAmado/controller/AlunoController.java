@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemAlunoDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.service.AlunoService;
 import jakarta.validation.Valid;
@@ -51,6 +52,13 @@ public class AlunoController {
 	public ResponseEntity <List<Aluno>> findAll() {
 		List<Aluno> alunos = alunoService.findAll();
 		return ResponseEntity.ok(alunos);
+	}
+	
+	
+	@GetMapping("/nome")
+	public ResponseEntity<List<ListagemAlunoDTO>> listaPorNome(String nome) {
+		List<ListagemAlunoDTO> lista = alunoService.listaPorNomeLike(nome);
+		return ResponseEntity.status(lista.isEmpty()?HttpStatus.NO_CONTENT : HttpStatus.OK).body(lista);
 	}
 
 }

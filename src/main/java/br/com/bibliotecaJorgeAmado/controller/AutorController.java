@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDTO;
 import br.com.bibliotecaJorgeAmado.Dto.AutorDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroAutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemAutorDTO;
 import br.com.bibliotecaJorgeAmado.domain.Autor;
 import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.service.AutorService;
@@ -46,6 +49,17 @@ public class AutorController {
 		return ResponseEntity.ok(autores);
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		autorService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/nome")
+	public ResponseEntity<List<ListagemAutorDTO>> listaPorNome(String nome) {
+		List<ListagemAutorDTO> lista = autorService.listaPorNomeLike(nome);
+		return ResponseEntity.status(lista.isEmpty()?HttpStatus.NO_CONTENT : HttpStatus.OK).body(lista);
+	}
 	
 
 }

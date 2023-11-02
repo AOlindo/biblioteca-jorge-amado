@@ -7,4 +7,5 @@ import br.com.bibliotecaJorgeAmado.domain.Livro;
 public interface LivroRepository extends JpaRepository<Livro, Integer> {
 
 
+
 }

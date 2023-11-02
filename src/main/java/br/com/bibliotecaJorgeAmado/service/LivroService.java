@@ -84,11 +84,11 @@ public class LivroService {
 	}
 	
 	public List<ListagemLivroDTO> find() {
-		List<ListagemLivroDTO> livro = livroRepository.findAll().stream().map(l -> new ListagemLivroDTO(l)).collect(Collectors.toList());
+		List<ListagemLivroDTO> livro = livroRepository.findAll().stream().map(livros -> new ListagemLivroDTO(livros)).collect(Collectors.toList());
 		return livro;
 		
 	}
-
-
+	
+	
 
 }

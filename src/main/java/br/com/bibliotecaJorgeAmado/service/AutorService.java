@@ -1,12 +1,14 @@
 package br.com.bibliotecaJorgeAmado.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarAutorDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroAutorDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemAutorDTO;
 import br.com.bibliotecaJorgeAmado.domain.Autor;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.AutorRepository;
@@ -52,4 +54,9 @@ public class AutorService {
 				.orElseThrow(() -> new ObjectNotFoundException("Id do Autor não encontrado"));
 		return autor;
 	}
+	public List<ListagemAutorDTO> listaPorNomeLike(String nome){
+		return autorRepository.findAutorByNomeLike(nome).stream().map(autor -> new ListagemAutorDTO(autor)).collect(Collectors.toList());
+	}
+	
+	
 }
