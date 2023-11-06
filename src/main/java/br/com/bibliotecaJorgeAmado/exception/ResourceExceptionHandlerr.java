@@ -26,6 +26,12 @@ public class ResourceExceptionHandlerr {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 
 	}
+	@ExceptionHandler(TratamentoException.class)
+	public ResponseEntity<Error> file(TratamentoException e, HttpServletRequest request) {
+		Error erro = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Livro alugado", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+
+	}
 	@ExceptionHandler(AmazonServiceException.class)
 	public ResponseEntity<Error> amazonService(AmazonServiceException e, HttpServletRequest request) {
 		HttpStatus code = HttpStatus.valueOf(e.getErrorCode());

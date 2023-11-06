@@ -10,6 +10,7 @@ import br.com.bibliotecaJorgeAmado.Dto.AtualizarLivroDTO;
 import br.com.bibliotecaJorgeAmado.Dto.AutorDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroLivroDTO;
 import br.com.bibliotecaJorgeAmado.Dto.ListagemLivroDTO;
+import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

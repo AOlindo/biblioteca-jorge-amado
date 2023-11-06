@@ -1,9 +1,13 @@
 package br.com.bibliotecaJorgeAmado.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarEmprestimoDTO;
@@ -13,7 +17,9 @@ import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Emprestimo;
 import br.com.bibliotecaJorgeAmado.domain.Funcionario;
 import br.com.bibliotecaJorgeAmado.domain.Livro;
+import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
+import br.com.bibliotecaJorgeAmado.exception.TratamentoException;
 import br.com.bibliotecaJorgeAmado.repository.EmprestimooRepository;
 
 @Service
@@ -35,19 +41,40 @@ public class EmprestimoService {
 		this.emprestimoRepository = emprestimooRepository;
 	}
 
-	public Emprestimo insert(CadastroEmprestimoDTO emprestimo) {
-		Aluno aluno = alunoService.findById(emprestimo.getAlunoId());
-		Funcionario funcionario = funcionarioService.findById(emprestimo.getFuncionarioId());
-		Livro livro = livroService.findById(emprestimo.getLivroId());
-		Emprestimo emp = new Emprestimo(emprestimo);
-		emp.setAluno(aluno);
-		emp.setFuncionario(funcionario);
-		emp.setLivro(livro);
-		return salvar(emp);
+	public Emprestimo insert(CadastroEmprestimoDTO emprestimoDto) {
+		
+//		Emprestimo c = emprestimoRepository.buscarEmprestimosPorIdEStatus(emprestimo.getLivroId(), Arrays.asList(StatusEmprestimo.RENOVADO.toString(), StatusEmprestimo.RESERVADO.toString() ));
+//		if (emprestimoEncontrado != null) {
+//			throw new RuntimeException("Livro ja alugado");
+//		}
+		
+//		List<StatusEmprestimo> status = new ArrayList<>();
+//		status.add(StatusEmprestimo.RENOVADO);
+//		status.add(StatusEmprestimo.RESERVADO);
+//
+//		Page<Emprestimo> emprestimoEncontradoPage = emprestimoRepository.buscarEmprestimosPorIdEStatus(emprestimo.getLivroId(), status, PageRequest.of(0, 1));
+//		
+//		if(!emprestimoEncontradoPage.getContent().isEmpty()) {
+//			throw new RuntimeException("Livro ja alugado");
+//		}
+//		
+		Boolean existeEmprestimosPorIdEStatus = emprestimoRepository.existeEmprestimosPorIdEStatus(emprestimoDto.getLivroId(), Arrays.asList(StatusEmprestimo.RENOVADO, StatusEmprestimo.RESERVADO ));
+		if (existeEmprestimosPorIdEStatus) {
+			throw new TratamentoException("O livro já está alugado por outro aluno");
+		}
+		
+		Aluno aluno = alunoService.findById(emprestimoDto.getAlunoId());
+		Funcionario funcionario = funcionarioService.findById(emprestimoDto.getFuncionarioId());
+		Livro livro = livroService.findById(emprestimoDto.getLivroId());
+		Emprestimo emprestimo = new Emprestimo(emprestimoDto);
+		emprestimo.setAluno(aluno);
+		emprestimo.setFuncionario(funcionario);
+		emprestimo.setLivro(livro);
+		return salvar(emprestimo);
 	}
 
-	private Emprestimo salvar(Emprestimo emp) {
-		return emprestimoRepository.save(emp);
+	private Emprestimo salvar(Emprestimo emprestimo) {
+		return emprestimoRepository.save(emprestimo);
 	}
 
 	public Emprestimo buscarPorId(Integer id) {
