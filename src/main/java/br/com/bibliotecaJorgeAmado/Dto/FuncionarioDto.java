@@ -1,26 +1,34 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
-import org.hibernate.validator.constraints.br.CPF;
+import java.io.Serializable;
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroFuncionarioDTO;
+import br.com.bibliotecaJorgeAmado.domain.Funcionario;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
-import br.com.bibliotecaJorgeAmado.domain.Aluno;
-import br.com.bibliotecaJorgeAmado.domain.Endereco;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-
-public class FuncionarioDTO {
-
-	@NotEmpty(message = "Preenchimento obrigatório")
+public class FuncionarioDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 	private String nome;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	private String telefone;
-	@CPF
-	@NotEmpty(message = "Preenchimento obrigatório")
-	private String cpf;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	private CadastroEnderecoDTO endereco;
+	
+	public FuncionarioDTO(Funcionario funcionario) {
+		this.id = funcionario.getId();
+		this.nome = funcionario.getNome();
+	}
 
-	public FuncionarioDTO() {
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -31,30 +39,11 @@ public class FuncionarioDTO {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public CadastroEnderecoDTO getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(CadastroEnderecoDTO endereco) {
-		this.endereco = endereco;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
+	
+	
+	
+	
+	
 	
 
 }

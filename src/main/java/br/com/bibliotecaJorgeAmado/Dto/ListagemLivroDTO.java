@@ -7,14 +7,12 @@ public class ListagemLivroDTO {
 	private Integer id;
 	private AutorDTO autor;
 	private String titulo;
-	private String descricao;
 	private EditoraDTO editora;
 
 	public ListagemLivroDTO(Livro livro) {
 		this.id = livro.getId();
 		this.autor = new AutorDTO(livro.getAutor());
 		this.titulo = livro.getTitulo();
-		this.descricao = livro.getDescricao();
 		this.editora = new EditoraDTO(livro.getEditora());
 
 	}
@@ -42,14 +40,6 @@ public class ListagemLivroDTO {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public EditoraDTO getEditora() {

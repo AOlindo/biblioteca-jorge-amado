@@ -89,6 +89,11 @@ public class LivroService {
 		
 	}
 	
+	public void delete(Integer id) {
+		Livro livro = findById(id);
+		livroRepository.delete(livro);
+	}
+	
 	
 
 }

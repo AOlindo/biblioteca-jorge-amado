@@ -6,6 +6,7 @@ import br.com.bibliotecaJorgeAmado.domain.Emprestimo;
 
 public interface EmprestimooRepository extends JpaRepository<Emprestimo, Integer> {
 
+
 }
 
 

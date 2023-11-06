@@ -14,12 +14,9 @@ public class CadastroEmprestimoDTO {
 	private Integer funcionarioId;
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private Integer livroId;
-	@NotEmpty(message = "Preenchimento obrigatório")
+
 	private LocalDate dataDoEmprestimo;
-
 	private LocalDate dataDaDevolucao;
-
-	@NotEmpty(message = "Preenchimento obrigatório")
 	private StatusEmprestimo statusEmprestimo;
 
 	public CadastroEmprestimoDTO() {

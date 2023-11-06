@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
-import br.com.bibliotecaJorgeAmado.Dto.FuncionarioDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroFuncionarioDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Funcionario;
 import br.com.bibliotecaJorgeAmado.service.AlunoService;
@@ -32,7 +32,7 @@ public class FuncionarioController {
 	private FuncionarioService funcionarioService;
 
 	@PostMapping
-	public ResponseEntity<Funcionario> insert(@RequestBody FuncionarioDTO cadatroDto) {
+	public ResponseEntity<Funcionario> insert(@RequestBody CadastroFuncionarioDTO cadatroDto) {
 		Funcionario funcionario = new Funcionario(cadatroDto);
 		funcionarioService.insert(funcionario);
 		return ResponseEntity.status(HttpStatus.CREATED).build();

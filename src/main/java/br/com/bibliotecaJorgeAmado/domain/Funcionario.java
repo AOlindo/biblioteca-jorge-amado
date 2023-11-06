@@ -2,7 +2,7 @@ package br.com.bibliotecaJorgeAmado.domain;
 
 import java.io.Serializable;
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarFuncionarioDTO;
-import br.com.bibliotecaJorgeAmado.Dto.FuncionarioDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroFuncionarioDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +30,7 @@ public class Funcionario implements Serializable {
 		
 	}
 	
-	public Funcionario(FuncionarioDTO cadastroDto) {
+	public Funcionario(CadastroFuncionarioDTO cadastroDto) {
 		this.nome = cadastroDto.getNome();
 		this.telefone = cadastroDto.getTelefone();
 		this.cpf = cadastroDto.getCpf();

@@ -59,7 +59,6 @@ public class Livro implements Serializable{
 	
 	public void listarLivros(ListagemLivroDTO listagemDto) {
 		this.titulo = listagemDto.getTitulo();
-		this.descricao = listagemDto.getDescricao();
 	}
 
 	public Integer getId() {

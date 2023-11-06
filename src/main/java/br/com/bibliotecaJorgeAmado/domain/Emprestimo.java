@@ -2,7 +2,9 @@ package br.com.bibliotecaJorgeAmado.domain;
 
 import java.time.LocalDate;
 
+import br.com.bibliotecaJorgeAmado.Dto.AtualizarEmprestimoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroEmprestimoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.ListagemEmprestimo;
 import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
 
 @Entity
 public class Emprestimo {
@@ -52,6 +55,21 @@ public class Emprestimo {
 		this.dataDoEmprestimo = LocalDate.now();
 		this.dataDaDevolucao = LocalDate.now().plusDays(15);
 		this.status = StatusEmprestimo.RESERVADO;
+	}
+	
+	public void listarEmprestimo(ListagemEmprestimo listagem) {
+		this.dataDoEmprestimo = LocalDate.now();
+		this.dataDaDevolucao = LocalDate.now().plusDays(15);
+	}
+	
+	public void atualizaEmprestimo(@Valid AtualizarEmprestimoDTO atualiza) {
+		this.dataDaDevolucao = atualiza.getDataDaDevolucao();
+		if(dataDaDevolucao.isEqual(LocalDate.now()) || dataDaDevolucao.isBefore(LocalDate.now())) {
+			status = StatusEmprestimo.ENTREGUE;
+		}
+		else {
+			status = StatusEmprestimo.RENOVADO;
+		}
 	}
 
 	public Integer getId() {
@@ -109,5 +127,7 @@ public class Emprestimo {
 	public void setStatus(StatusEmprestimo status) {
 		this.status = status;
 	}
+
+
 
 }
