@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,7 +54,7 @@ public class LivroController {
 	
 	@GetMapping
 	public ResponseEntity<List<ListagemLivroDTO>> findAll(){
-		List<ListagemLivroDTO> livros = livroService.find();
+		List<ListagemLivroDTO> livros = livroService.find(Sort.by(Sort.Direction.ASC, "titulo"));
 		return ResponseEntity.ok(livros);
 	}
 	
@@ -61,6 +62,12 @@ public class LivroController {
 	public ResponseEntity<Void> delelte(@PathVariable Integer id){
 		livroService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/OrdenarPorTitulo")
+	public ResponseEntity<List<ListagemLivroDTO>> OrdenarPorTitulo(){
+		List<ListagemLivroDTO> livros = livroService.ordernarPorTitulo();
+		return ResponseEntity.ok(livros);
 	}
 
 	

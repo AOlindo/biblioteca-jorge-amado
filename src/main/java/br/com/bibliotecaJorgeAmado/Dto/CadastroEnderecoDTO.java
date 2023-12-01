@@ -1,6 +1,7 @@
 package br.com.bibliotecaJorgeAmado.Dto;
 
 import br.com.bibliotecaJorgeAmado.domain.Endereco;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 public class CadastroEnderecoDTO {
@@ -23,7 +24,7 @@ public class CadastroEnderecoDTO {
 
 	}
 
-	public CadastroEnderecoDTO(Endereco obj) {
+	public CadastroEnderecoDTO(@Valid Endereco obj) {
 		this.logradouro = obj.getLogradouro();
 		this.numero = obj.getNumero();
 		this.bairro = obj.getBairro();

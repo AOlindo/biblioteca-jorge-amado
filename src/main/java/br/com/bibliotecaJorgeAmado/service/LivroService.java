@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -83,7 +84,7 @@ public class LivroService {
 		return uri;
 	}
 	
-	public List<ListagemLivroDTO> find() {
+	public List<ListagemLivroDTO> find(Sort sort) {
 		List<ListagemLivroDTO> livro = livroRepository.findAll().stream().map(livros -> new ListagemLivroDTO(livros)).collect(Collectors.toList());
 		return livro;
 		
@@ -92,6 +93,12 @@ public class LivroService {
 	public void delete(Integer id) {
 		Livro livro = findById(id);
 		livroRepository.delete(livro);
+	}
+	
+	public List<ListagemLivroDTO> ordernarPorTitulo() {
+		List<ListagemLivroDTO> livro = livroRepository.findByOrderByTitulo().stream().map(livros -> new ListagemLivroDTO(livros)).collect(Collectors.toList());
+		return livro;
+		
 	}
 	
 	

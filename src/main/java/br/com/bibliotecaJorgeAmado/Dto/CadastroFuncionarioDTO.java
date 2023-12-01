@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
 import br.com.bibliotecaJorgeAmado.domain.Endereco;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -14,6 +15,7 @@ public class CadastroFuncionarioDTO {
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String telefone;
 	@CPF
+	@Column(unique = true)
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cpf;
 	@NotEmpty(message = "Preenchimento obrigatório")

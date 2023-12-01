@@ -2,10 +2,11 @@ package br.com.bibliotecaJorgeAmado.Dto;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import br.com.bibliotecaJorgeAmado.domain.Aluno;
-import br.com.bibliotecaJorgeAmado.domain.Endereco;
+import jakarta.persistence.Column;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class CadastroAlunoDTO {
 
@@ -19,7 +20,7 @@ public class CadastroAlunoDTO {
 	private String cpf;
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String telefone;
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotNull(message = "Preenchimento obrigatório")
 	private CadastroEnderecoDTO endereco;
 
 	public CadastroAlunoDTO() {

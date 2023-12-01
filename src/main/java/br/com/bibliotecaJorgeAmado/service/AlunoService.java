@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarAlunoDTO;
+import br.com.bibliotecaJorgeAmado.Dto.CadastroAlunoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.ListagemAlunoDTO;
 import br.com.bibliotecaJorgeAmado.domain.Aluno;
+import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.repository.AlunoRepository;
 
@@ -23,8 +25,12 @@ public class AlunoService {
 	}
 
 	public Aluno insert(Aluno aluno) {
-		return alunoRepository.save(aluno);
+		return salve(aluno);
 
+	}
+	
+	public Aluno salve(Aluno aluno) {
+		return alunoRepository.save(aluno);
 	}
 
 	public Aluno update(AtualizarAlunoDTO atualizar, Integer id) {
@@ -50,7 +56,16 @@ public class AlunoService {
 		return aluno;
 	}
 	
-	public List<ListagemAlunoDTO> listaPorNomeLike(String nome){
-		return alunoRepository.findAlunosByNomeLike(nome).stream().map(aluno -> new ListagemAlunoDTO(aluno)).collect(Collectors.toList());
+//	public List<ListagemAlunoDTO> listaPorNomeLike(String nome){
+//		return alunoRepository.findAlunosByNomeLike(nome).stream().map(aluno -> new ListagemAlunoDTO(aluno)).collect(Collectors.toList());
+//	}
+	
+	public List<Aluno> buscarAlunoPorNome(String nome){
+		List<Aluno> aluno = alunoRepository.buscarAlunoPorNome(nome);
+		return aluno;
+	}
+	public Aluno buscarAlunoPorCpf(String cpf){
+		Aluno aluno = alunoRepository.findByCpf(cpf);
+		return aluno;
 	}
 }
