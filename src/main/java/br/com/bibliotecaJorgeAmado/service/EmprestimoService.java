@@ -19,7 +19,7 @@ import br.com.bibliotecaJorgeAmado.domain.Funcionario;
 import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
-import br.com.bibliotecaJorgeAmado.exception.TratamentoException;
+import br.com.bibliotecaJorgeAmado.exception.RegraNegocioException;
 import br.com.bibliotecaJorgeAmado.repository.EmprestimooRepository;
 
 @Service
@@ -60,7 +60,7 @@ public class EmprestimoService {
 //		
 		Boolean existeEmprestimosPorIdEStatus = emprestimoRepository.existeEmprestimosPorIdEStatus(emprestimoDto.getLivroId(), Arrays.asList(StatusEmprestimo.RENOVADO, StatusEmprestimo.RESERVADO ));
 		if (existeEmprestimosPorIdEStatus) {
-			throw new TratamentoException("O livro já está alugado por outro aluno");
+			throw new RegraNegocioException("O livro já está alugado por outro aluno");
 		}
 		
 		Aluno aluno = alunoService.findById(emprestimoDto.getAlunoId());

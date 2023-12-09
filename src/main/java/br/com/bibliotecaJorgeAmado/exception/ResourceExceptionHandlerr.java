@@ -26,9 +26,9 @@ public class ResourceExceptionHandlerr {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 
 	}
-	@ExceptionHandler(TratamentoException.class)
-	public ResponseEntity<Error> file(TratamentoException e, HttpServletRequest request) {
-		Error erro = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Livro alugado", e.getMessage(), request.getRequestURI());
+	@ExceptionHandler(RegraNegocioException.class)
+	public ResponseEntity<Error> file(RegraNegocioException e, HttpServletRequest request) {
+		Error erro = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Error de regra de negócio", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 
 	}
@@ -37,6 +37,14 @@ public class ResourceExceptionHandlerr {
 		HttpStatus code = HttpStatus.valueOf(e.getErrorCode());
 		Error erro = new Error(System.currentTimeMillis(), code.value(), "Erro Amazon Service", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(code).body(erro);
+
+	}
+	
+	
+	@ExceptionHandler(InternalServerErrorException.class)
+	public ResponseEntity<Error> internalServerErrorException(InternalServerErrorException e, HttpServletRequest request) {
+		Error erro = new Error(System.currentTimeMillis(), HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro interno", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
 
 	}
 	

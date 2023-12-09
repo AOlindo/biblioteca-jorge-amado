@@ -1,9 +1,9 @@
 package br.com.bibliotecaJorgeAmado.exception;
 
-public class TratamentoException extends RuntimeException {
+public class InternalServerErrorException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
-	public TratamentoException(String msg) {
+	public InternalServerErrorException(String msg) {
 		super(msg);
 	}
 

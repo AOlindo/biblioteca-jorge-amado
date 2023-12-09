@@ -27,20 +27,12 @@ public class Endereco implements Serializable {
 	}
 
 	public Endereco(CadastroEnderecoDTO enderecoDto) {
-		this.logradouro = enderecoDto.getLogradouro();
 		this.numero = enderecoDto.getNumero();
-		this.bairro = enderecoDto.getBairro();
-		this.cidade = enderecoDto.getCidade();
-		this.uf = enderecoDto.getUf();
 		this.cep = enderecoDto.getCep();
 	}
 
 	public void atualizandoEndereco(CadastroEnderecoDTO atualiza) {
-		this.logradouro = atualiza.getLogradouro();
 		this.numero = atualiza.getNumero();
-		this.bairro = atualiza.getBairro();
-		this.cidade = atualiza.getCidade();
-		this.uf = atualiza.getUf();
 		this.cep = atualiza.getCep();
 	}
 
