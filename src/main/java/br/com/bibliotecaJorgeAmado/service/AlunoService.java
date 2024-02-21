@@ -32,7 +32,7 @@ public class AlunoService {
 
 	public void setarDadosEnderecoAluno(Aluno aluno) {
 		try {
-			DadosCep dados = enderecoService.buscaEnderecoFeign(aluno.getEndereco().getCep());
+			DadosCep dados = enderecoService.buscaEndereco(aluno.getEndereco().getCep());
 			aluno.getEndereco().setLogradouro(dados.getLogradouro());
 			aluno.getEndereco().setBairro(dados.getBairro());
 			aluno.getEndereco().setCidade(dados.getLocalidade());

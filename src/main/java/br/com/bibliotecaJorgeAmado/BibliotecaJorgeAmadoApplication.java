@@ -22,7 +22,6 @@ public class BibliotecaJorgeAmadoApplication {
 	public ObjectMapper mapper() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, false);
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		return mapper;
 	}
 	
