@@ -1,6 +1,7 @@
 create table usuarios(
-	id TEXT PRIMARY KEY UNIQUE NOT NULL,
+	id bigint not null auto_increment,
 	login TEXT NOT NULL UNIQUE,
 	senha TEXT NOT NULL,
 	role TEXT NOT NULL
+ primary key(id)
 );
