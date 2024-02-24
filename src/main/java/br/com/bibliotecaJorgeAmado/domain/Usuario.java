@@ -9,7 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.bibliotecaJorgeAmado.enums.UsuarioRole;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,19 +23,30 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
+@Table(name = "usuarios")
 public class Usuario implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String login;
 	private String senha;
+	@Enumerated(EnumType.STRING)
 	private UsuarioRole role;
 	
 	public Usuario() {
 		
 	}
+	
+	
+	public Usuario(String login, String senha, UsuarioRole role) {
+		this.login = login;
+		this.senha = senha;
+		this.role = role;
+	}
 
+	//Este metodo vai consultar a entidade para verificar quais são as Roles que os usuarios tem, neste caso Admin e User. 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if(this.role  == UsuarioRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
@@ -39,37 +55,31 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return senha;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return login;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	

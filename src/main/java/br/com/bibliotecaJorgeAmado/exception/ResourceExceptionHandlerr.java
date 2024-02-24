@@ -16,7 +16,7 @@ public class ResourceExceptionHandlerr {
 	
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<Error> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
-		Error erro = new Error(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Id não encontrado", e.getMessage(), request.getRequestURI());
+		Error erro = new Error(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Dado não encontrado", e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
 
 	}
