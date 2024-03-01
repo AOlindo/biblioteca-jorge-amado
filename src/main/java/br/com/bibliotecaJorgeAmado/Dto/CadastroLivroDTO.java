@@ -12,6 +12,8 @@ public class CadastroLivroDTO {
 	private String titulo;
 	@NotNull(message = "Campo obrigatorio")
 	private String descricao;
+	@NotNull(message = "Campo obrigatorio")
+	private String isbn;
 	
 	public CadastroLivroDTO() {
 		
@@ -52,6 +54,16 @@ public class CadastroLivroDTO {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	
 	

@@ -39,6 +39,7 @@ public class Livro implements Serializable{
 	private Editora editora;
 	
 	private String url;
+	private String isbn;
 	
 	public Livro() {
 		
@@ -47,6 +48,7 @@ public class Livro implements Serializable{
 	public Livro(CadastroLivroDTO livroDto) {
 		this.titulo = livroDto.getTitulo();
 		this.descricao = livroDto.getDescricao();
+		this.isbn = livroDto.getIsbn();
 	}
 	
 	public void atualizarLivro(AtualizarLivroDTO atualizarDto) {
@@ -108,6 +110,16 @@ public class Livro implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	
 	
 	
 	
