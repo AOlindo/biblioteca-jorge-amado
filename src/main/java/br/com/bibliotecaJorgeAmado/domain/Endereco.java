@@ -21,6 +21,7 @@ public class Endereco implements Serializable {
 	private String cidade;
 	private String uf;
 	private String cep;
+	private String complemento;
 
 	public Endereco() {
 
@@ -29,6 +30,7 @@ public class Endereco implements Serializable {
 	public Endereco(CadastroEnderecoDTO enderecoDto) {
 		this.numero = enderecoDto.getNumero();
 		this.cep = enderecoDto.getCep();
+		this.complemento = enderecoDto.getComplemento();
 	}
 
 	public void atualizandoEndereco(CadastroEnderecoDTO atualiza) {
@@ -91,5 +93,14 @@ public class Endereco implements Serializable {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
 
 }

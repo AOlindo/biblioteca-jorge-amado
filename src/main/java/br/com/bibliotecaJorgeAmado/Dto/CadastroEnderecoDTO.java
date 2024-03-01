@@ -11,6 +11,7 @@ public class CadastroEnderecoDTO {
 	private String numero;
 	@NotNull(message = "Preenchimento obrigatório")
 	private String cep;
+	private String complemento;
 
 	public CadastroEnderecoDTO() {
 
@@ -19,6 +20,7 @@ public class CadastroEnderecoDTO {
 	public CadastroEnderecoDTO(@Valid Endereco obj) {
 		this.numero = obj.getNumero();
 		this.cep = obj.getCep();
+		this.complemento = obj.getComplemento();
 
 	}
 
@@ -54,5 +56,14 @@ public class CadastroEnderecoDTO {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
 
 }
