@@ -8,13 +8,12 @@ Este é um projeto pessoal de uma biblioteca online inspirado no trabalho do ren
 - Empréstimo de Livros
 - Integrações Externas(Via CEP Integration)
 
-## 🛠️ Construído com
+## 🛠️ Tecnologias Utilizadas
 - Java
 - Spring Boot
 - JPA (Java Persistence API)
 - MySQL
 - Amazon S3 (para armazenamento de arquivos)
 - Via CEP (API para informações de endereço)
-
 
 
