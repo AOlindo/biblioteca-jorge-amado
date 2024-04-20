@@ -4,15 +4,16 @@ import java.time.LocalDate;
 
 import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class CadastroEmprestimoDTO {
 
 	private Integer id;
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer alunoId;
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer funcionarioId;
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotNull(message = "Preenchimento obrigatório")
 	private Integer livroId;
 
 	private LocalDate dataDoEmprestimo;

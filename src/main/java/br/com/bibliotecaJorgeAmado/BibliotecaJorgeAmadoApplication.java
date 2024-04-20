@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -22,6 +23,8 @@ public class BibliotecaJorgeAmadoApplication {
 	public ObjectMapper mapper() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, false);
+		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		mapper.registerModule(new JavaTimeModule());
 		return mapper;
 	}
 	

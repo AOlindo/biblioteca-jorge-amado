@@ -81,7 +81,7 @@ public class AlunoService {
 
 	public Aluno findById(Integer id) {
 		Aluno aluno = alunoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("Id da editora não encontrado"));
+				.orElseThrow(() -> new ObjectNotFoundException("Id do aluno não encontrado"));
 		return aluno;
 	}
 
