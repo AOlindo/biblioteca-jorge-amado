@@ -3,6 +3,7 @@ package br.com.bibliotecaJorgeAmado.Dto;
 import java.time.LocalDate;
 
 import br.com.bibliotecaJorgeAmado.domain.Emprestimo;
+import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 
 public class ListagemEmprestimo {
 
@@ -12,6 +13,7 @@ public class ListagemEmprestimo {
 	private LivroDTO livro;
 	private LocalDate dataDoEmprestimo;
 	private LocalDate dataDaDevolucao;
+	private StatusEmprestimo status;
 	
 	public ListagemEmprestimo(Emprestimo emprestimo) {
 		this.id = emprestimo.getId();
@@ -20,6 +22,7 @@ public class ListagemEmprestimo {
 		this.livro = new LivroDTO(emprestimo.getLivro());
 		this.dataDoEmprestimo = LocalDate.now();
 		this.dataDaDevolucao = LocalDate.now().plusDays(15);
+		this.setStatus(emprestimo.getStatus());
 	}
 
 	public Integer getId() {
@@ -68,6 +71,14 @@ public class ListagemEmprestimo {
 
 	public void setDataDaDevolucao(LocalDate dataDaDevolucao) {
 		this.dataDaDevolucao = dataDaDevolucao;
+	}
+
+	public StatusEmprestimo getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusEmprestimo status) {
+		this.status = status;
 	}
 	
 	

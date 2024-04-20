@@ -1,15 +1,15 @@
 package br.com.bibliotecaJorgeAmado.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-
 import br.com.bibliotecaJorgeAmado.Dto.AtualizarEmprestimoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.CadastroEmprestimoDTO;
 import br.com.bibliotecaJorgeAmado.Dto.ListagemEmprestimo;
@@ -20,13 +20,14 @@ import br.com.bibliotecaJorgeAmado.domain.Livro;
 import br.com.bibliotecaJorgeAmado.enums.StatusEmprestimo;
 import br.com.bibliotecaJorgeAmado.exception.ObjectNotFoundException;
 import br.com.bibliotecaJorgeAmado.exception.RegraNegocioException;
-import br.com.bibliotecaJorgeAmado.repository.EmprestimooRepository;
+import br.com.bibliotecaJorgeAmado.repository.EmprestimoRepository;
+
 
 @Service
 public class EmprestimoService {
 
 	@Autowired
-	private EmprestimooRepository emprestimoRepository;
+	private EmprestimoRepository emprestimoRepository;
 
 	@Autowired
 	private AlunoService alunoService;
@@ -37,7 +38,7 @@ public class EmprestimoService {
 	@Autowired
 	private LivroService livroService;
 
-	public EmprestimoService(EmprestimooRepository emprestimooRepository) {
+	public EmprestimoService(EmprestimoRepository emprestimooRepository) {
 		this.emprestimoRepository = emprestimooRepository;
 	}
 
@@ -83,11 +84,11 @@ public class EmprestimoService {
 		return eemprestimo;
 	}
 
-	public List<ListagemEmprestimo> findAll() {
-		List<ListagemEmprestimo> emprestimo = emprestimoRepository.findAll().stream()
-				.map(emprestimos -> new ListagemEmprestimo(emprestimos)).collect(Collectors.toList());
-		return emprestimo;
-	}
+//	public List<ListagemEmprestimo> findAll() {
+//		List<ListagemEmprestimo> emprestimo = emprestimoRepository.findAll().stream()
+//				.map(emprestimos -> new ListagemEmprestimo(emprestimos)).collect(Collectors.toList());
+//		return emprestimo;
+//	}
 
 	public List<ListagemEmprestimo> findById(Integer id) {
 		List<ListagemEmprestimo> emprestimo = emprestimoRepository.findById(id).stream()
@@ -104,6 +105,11 @@ public class EmprestimoService {
 	public void delete(Integer id) {
 		Emprestimo emprestimo = buscarPorId(id);
 		emprestimoRepository.delete(emprestimo);
+	}
+	
+	public Page<Emprestimo> findAllPage(Integer pagina, Integer linhasPorPagina) {
+		PageRequest page = PageRequest.of(pagina, linhasPorPagina, Sort.by("status").ascending());
+		return emprestimoRepository.findAll(page); 
 	}
 }
 
